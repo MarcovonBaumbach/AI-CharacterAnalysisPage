@@ -2,8 +2,7 @@ import { Component } from '@angular/core';
 import { NgIf } from '@angular/common';
 import { CommonModule } from '@angular/common';
 import { MatCardModule } from '@angular/material/card';
-import { Observable } from 'rxjs';
-import { AnalysisStateService } from '../services/analysis-state-service';
+import { AnalysisStateService } from '../services/analysis-state.service';
 import { AnalysisResult } from '../Interfaces/AnalysisResult';
 
 @Component({

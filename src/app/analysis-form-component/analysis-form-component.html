@@ -1,1 +1,66 @@
-<p>analysis-form-component works!</p>
+<form
+  [formGroup]="form"
+  (ngSubmit)="submit()"
+  class="analysis-form"
+  fxLayout="column"
+  fxLayoutGap="16px"
+>
+
+  <!-- Character (required) -->
+  <mat-form-field appearance="outline">
+    <mat-label>Character</mat-label>
+    <input
+      matInput
+      formControlName="character"
+      placeholder="Character name"
+      required
+    />
+    <mat-error *ngIf="form.get('character')?.hasError('required')">
+      Character is required
+    </mat-error>
+  </mat-form-field>
+
+  <!-- Context -->
+  <mat-form-field appearance="outline">
+    <mat-label>Context</mat-label>
+    <textarea
+      matInput
+      rows="3"
+      formControlName="context"
+      placeholder="Additional context"
+    ></textarea>
+  </mat-form-field>
+
+  <!-- Analysis (required) -->
+  <mat-form-field appearance="outline">
+    <mat-label>Analysis</mat-label>
+    <textarea
+      matInput
+      rows="5"
+      formControlName="analysis"
+      placeholder="Enter your analysis"
+      required
+    ></textarea>
+    <mat-error *ngIf="form.get('analysis')?.hasError('required')">
+      Analysis is required
+    </mat-error>
+  </mat-form-field>
+
+  <!-- Actions -->
+  <div class="actions">
+    <button
+      mat-raised-button
+      color="primary"
+      type="submit"
+      [disabled]="form.invalid || loading"
+    >
+      <mat-spinner
+        *ngIf="loading"
+        diameter="20"
+        class="button-spinner"
+      ></mat-spinner>
+      <span *ngIf="!loading">Analyze</span>
+    </button>
+  </div>
+
+</form>
