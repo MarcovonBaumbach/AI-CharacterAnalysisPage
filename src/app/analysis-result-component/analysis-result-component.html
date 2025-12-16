@@ -1,0 +1,29 @@
+<section *ngIf="result">
+  <mat-card>
+    <mat-card-title>Coherence Check</mat-card-title>
+    <mat-card-content>
+      {{ result.coherence }}
+    </mat-card-content>
+  </mat-card>
+
+  <mat-card>
+    <mat-card-title>Missed Layers</mat-card-title>
+    <mat-card-content>
+      {{ result.depth }}
+    </mat-card-content>
+  </mat-card>
+
+  <mat-card>
+    <mat-card-title>Alternative Views</mat-card-title>
+    <mat-card-content>
+      {{ result.alternatives }}
+    </mat-card-content>
+  </mat-card>
+
+  <mat-card>
+    <mat-card-title>Personal Reflection</mat-card-title>
+    <mat-card-content>
+      {{ result.reflection }}
+    </mat-card-content>
+  </mat-card>
+</section>
