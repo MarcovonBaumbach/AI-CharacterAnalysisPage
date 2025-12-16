@@ -10,6 +10,7 @@ import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { NgIf } from '@angular/common';
 
 @Component({
+  standalone: true, 
   selector: 'app-analysis-form-component',
   imports: [
     ReactiveFormsModule,

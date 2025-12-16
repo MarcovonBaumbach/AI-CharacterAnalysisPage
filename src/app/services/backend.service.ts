@@ -4,7 +4,7 @@ import { CharacterAnalysisInput } from "../Interfaces/CharacterAnalysisInput";
 import { AnalysisResult } from "../Interfaces/AnalysisResult";
 
 @Injectable({ providedIn: 'root' })
-export class CharacterAnalysisService {
+export class BackendService {
   constructor(private http: HttpClient) {}
 
   analyze(input: CharacterAnalysisInput) {
