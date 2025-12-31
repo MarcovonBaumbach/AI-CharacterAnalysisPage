@@ -5,11 +5,13 @@ import { AnalysisResult } from "../Interfaces/AnalysisResult";
 
 @Injectable({ providedIn: 'root' })
 export class BackendService {
+  backendURL = 'http://localhost:5034';
+
   constructor(private http: HttpClient) {}
 
   analyze(input: CharacterAnalysisInput) {
     return this.http.post<AnalysisResult>(
-      '/api/character-analysis',
+      `${this.backendURL}/api/reflection`,
       input
     );
   }

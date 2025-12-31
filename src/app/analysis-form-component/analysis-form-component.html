@@ -1,74 +1,31 @@
-<form
-  [formGroup]="form"
-  (ngSubmit)="submit()"
-  class="analysis-form"
-  fxLayout="column"
-  fxLayoutGap="16px"
->
+<form [formGroup]="form" (ngSubmit)="submit()" class="analysis-form">
+  <div class="form-fields">
+    <!-- Show -->
+    <mat-form-field appearance="outline">
+      <mat-label>Show</mat-label>
+      <input matInput formControlName="show" placeholder="Show name" required/>
+    </mat-form-field>
 
-  <!-- Show -->
-  <mat-form-field appearance="outline">
-    <mat-label>Show</mat-label>
-    <input
-      matInput
-      formControlName="show"
-      placeholder="Show name"
-    />
-  </mat-form-field>
-
-  <!-- Character (required) -->
-  <mat-form-field appearance="outline">
-    <mat-label>Character</mat-label>
-    <input
-      matInput
-      formControlName="character"
-      placeholder="Character name"
-      required
-    />
-    <mat-error *ngIf="form.get('character')?.hasError('required')">
-      Character is required
-    </mat-error>
-  </mat-form-field>
-
-  <!-- Context -->
-  <mat-form-field appearance="outline">
-    <mat-label>Context</mat-label>
-    <textarea
-      matInput
-      rows="3"
-      formControlName="context"
-      placeholder="Additional context"
-    ></textarea>
-  </mat-form-field>
+    <!-- Context -->
+    <mat-form-field appearance="outline">
+      <mat-label>Episode/Season</mat-label>
+      <input matInput formControlName="episode" placeholder="Additional context" />
+    </mat-form-field>
+  </div>
 
   <!-- Analysis (required) -->
-  <mat-form-field appearance="outline">
+  <mat-form-field appearance="outline" class="analysis-input">
     <mat-label>Analysis</mat-label>
-    <textarea
-      matInput
-      rows="5"
-      formControlName="analysis"
-      placeholder="Enter your analysis"
-      required
-    ></textarea>
-    <mat-error *ngIf="form.get('analysis')?.hasError('required')">
+    <textarea matInput rows="5" formControlName="observations" placeholder="Enter your analysis" required></textarea>
+    <mat-error *ngIf="form.get('observations')?.hasError('required')">
       Analysis is required
     </mat-error>
   </mat-form-field>
 
   <!-- Actions -->
   <div class="actions">
-    <button
-      mat-raised-button
-      color="primary"
-      type="submit"
-      [disabled]="form.invalid || loading"
-    >
-      <mat-spinner
-        *ngIf="loading"
-        diameter="20"
-        class="button-spinner"
-      ></mat-spinner>
+    <button mat-raised-button color="primary" type="submit" [disabled]="form.invalid || loading">
+      <mat-spinner *ngIf="loading" diameter="20" class="button-spinner"></mat-spinner>
       <span *ngIf="!loading">Analyze</span>
     </button>
   </div>

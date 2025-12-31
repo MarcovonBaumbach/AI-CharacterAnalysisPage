@@ -33,9 +33,8 @@ export class AnalysisFormComponent {
     private state: AnalysisStateService) {
     this.form = this.fb.group({
       show: [''],
-      character: ['', Validators.required],
-      context: [''],
-      analysis: ['', Validators.required],
+      episode: [''],
+      observations: ['', Validators.required],
     });
   }
 
