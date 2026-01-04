@@ -6,6 +6,8 @@ import { AnalysisResult } from "../models/AnalysisResult";
 export class AnalysisStateService {
   private resultSubject = new BehaviorSubject<AnalysisResult | null>(null);
   result$ = this.resultSubject.asObservable();
+  showNameSubject = new BehaviorSubject<string>("");
+  showName$ = this.showNameSubject.asObservable();
 
   setResult(result: AnalysisResult) {
     this.resultSubject.next(result);

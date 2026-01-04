@@ -10,7 +10,7 @@ import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { NgIf } from '@angular/common';
 
 @Component({
-  standalone: true, 
+  standalone: true,
   selector: 'app-analysis-form-component',
   imports: [
     ReactiveFormsModule,
@@ -31,10 +31,12 @@ export class AnalysisFormComponent {
   constructor(public analysisService: BackendService,
     private fb: FormBuilder,
     private state: AnalysisStateService) {
-    this.form = this.fb.group({
-      showName: ['', Validators.required],
-      episode: [''],
-      observations: ['', Validators.required],
+    this.state.showName$.subscribe(value => {
+      this.form = this.fb.group({
+        showName: [value, Validators.required],
+        episode: [''],
+        observations: ['', Validators.required],
+      });
     });
   }
 
