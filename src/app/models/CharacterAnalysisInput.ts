@@ -1,5 +1,5 @@
 export interface CharacterAnalysisInput {
-  show: string;
+  showName: string;
   episode?: string;
   observations: string;
 }

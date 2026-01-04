@@ -1,0 +1,13 @@
+<h3><a href="/">NEW ANALYSIS</a></h3>
+
+<h3 class="headline">YOUR SHOWS:</h3>
+
+<ul *ngIf="shows$ | async as shows">
+  <p *ngFor="let show of shows">
+    {{ show.name }}
+  </p>
+</ul>
+
+<p *ngIf="(shows$ | async)?.length === 0 || shows$ == undefined">
+  No shows available
+</p>

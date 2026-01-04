@@ -3,7 +3,10 @@
     <!-- Show -->
     <mat-form-field appearance="outline">
       <mat-label>Show</mat-label>
-      <input matInput formControlName="show" placeholder="Show name" required/>
+      <input matInput formControlName="showName" placeholder="Show name" required/>
+      <mat-error *ngIf="form.get('showName')?.hasError('required')">
+        Show name is required
+      </mat-error>
     </mat-form-field>
 
     <!-- Context -->

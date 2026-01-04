@@ -1,8 +1,8 @@
 import { Component } from '@angular/core';
-import { BackendService } from '../services/backend.service';
+import { BackendService } from '../../services/backend.service';
 import { ReactiveFormsModule, Validators, FormBuilder, FormGroup } from '@angular/forms';
-import { AnalysisResult } from '../Interfaces/AnalysisResult';
-import { AnalysisStateService } from '../services/analysis-state.service';
+import { AnalysisResult } from '../../models/AnalysisResult';
+import { AnalysisStateService } from '../../services/analysis-state.service';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatButtonModule } from '@angular/material/button';
@@ -32,7 +32,7 @@ export class AnalysisFormComponent {
     private fb: FormBuilder,
     private state: AnalysisStateService) {
     this.form = this.fb.group({
-      show: [''],
+      showName: ['', Validators.required],
       episode: [''],
       observations: ['', Validators.required],
     });

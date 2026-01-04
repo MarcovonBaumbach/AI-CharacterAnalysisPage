@@ -1,6 +1,6 @@
 import { Injectable } from "@angular/core";
 import { BehaviorSubject } from "rxjs";
-import { AnalysisResult } from "../Interfaces/AnalysisResult";
+import { AnalysisResult } from "../models/AnalysisResult";
 
 @Injectable({ providedIn: 'root' })
 export class AnalysisStateService {

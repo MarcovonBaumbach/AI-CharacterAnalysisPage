@@ -1,3 +1,9 @@
+.app-layout {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+}
+
 .headline {
     background-color: rgb(42, 40, 40);
     color: white;
@@ -5,6 +11,22 @@
     padding: 16px;
 }
 
+.body {
+  display: flex;
+  flex: 1;
+  min-height: 0;
+}
+
+.sidebar {
+  width: fit-content;
+  min-width: 150px;
+  background-color: #cfd3d8;
+  color: rgb(80, 77, 77);
+  padding: 16px;
+}
+
 .content {
-    padding: 32px;
+  flex: 1;
+  padding: 24px;
+  overflow: auto;
 }
