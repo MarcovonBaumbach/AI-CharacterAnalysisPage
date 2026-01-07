@@ -1,13 +1,18 @@
-<h3><a href="/">NEW ANALYSIS</a></h3>
+<a href="/">NEW ANALYSIS +</a>
 
 <h4 class="headline">YOUR SHOWS:</h4>
 
-<ul *ngIf="shows$ | async as shows">
-  <a *ngFor="let show of shows" (click)="setShowName(show.name)">
-    {{ show.name }}
-  </a>
-</ul>
+<div *ngIf="shows$ | async as shows">
+  <p *ngFor="let show of shows" class="shows">
+    <a (click)="setShowName(show.name)">{{ show.name }}</a>
+    <img src="assets/bin.svg" alt="bin" height="12" width="12" />
+  </p>
 
-<p *ngIf="(shows$ | async)?.length === 0 || shows$ == undefined">
-  No shows available
-</p>
+  <p *ngIf="shows.length === 0">
+    No shows available
+  </p>
+
+  <p *ngIf="errorMessage">
+    {{ errorMessage }}
+  </p>
+</div>

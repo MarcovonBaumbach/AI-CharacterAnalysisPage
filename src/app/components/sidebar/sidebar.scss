@@ -2,6 +2,7 @@ a {
     text-decoration: none;
     color: inherit;
     transition: color 0.3s;
+    padding-right: 16px;
 }
 
 a:hover {
@@ -9,6 +10,38 @@ a:hover {
     cursor: pointer;
 }
 
+// .shows img {
+//     display: none;
+// }
+
+// .shows:hover img {
+//     display: inline-block;
+// }
+
+.shows img {
+    opacity: 0;
+    transform: scale(0.7);
+    transition: 
+        opacity 0.25s ease-in-out,
+        transform 0.25s ease-in-out;
+}
+
+.shows:hover img {
+    opacity: 1;
+    transform: scale(1);
+}
+
+.shows img:hover {
+    transform: scale(1.15);
+    transition: 
+        transform 0.05s ease-in-out;
+    cursor: pointer;
+}
+
 .headline {
     color: rgb(71, 68, 68);
+}
+
+p {
+    padding-left: 16px;
 }
