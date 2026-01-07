@@ -1,10 +1,13 @@
 import { Component } from '@angular/core';
-import { Observable, catchError, of } from 'rxjs';
+import { Observable } from 'rxjs';
 import { TvShowEntity } from '../../models/TvShowEntity';
 import { BackendService } from '../../services/backend.service';
 import { CommonModule } from '@angular/common';
 import { AnalysisStateService } from '../../services/analysis-state.service';
 import { HttpErrorResponse } from "@angular/common/http";
+import { MatDialog } from '@angular/material/dialog';
+import { DeleteDialog } from './delete-dialog/delete-dialog';
+import { ShowStateService } from '../../services/show-state.service';
 
 @Component({
   selector: 'app-sidebar',
@@ -14,33 +17,30 @@ import { HttpErrorResponse } from "@angular/common/http";
 })
 export class Sidebar {
   shows$ = new Observable<TvShowEntity[]>;
-  errorMessage: string | null = null;
 
   constructor(
     private backendService: BackendService,
-    private analysisStateService: AnalysisStateService
+    private analysisStateService: AnalysisStateService,
+    public showStateService: ShowStateService,
+    private dialog: MatDialog
   ) {
-    this.shows$ = this.backendService.getShows().pipe(
-      catchError((error: HttpErrorResponse) => {
-        this.errorMessage = this.extractErrorMessage(error);
-        return of([]);
-      })
-    );
+    this.shows$ = this.showStateService.shows$;
   }
 
   setShowName(showName: string) {
     this.analysisStateService.showNameSubject.next(showName);
   }
 
-  private extractErrorMessage(error: HttpErrorResponse): string {
-    if (typeof error.error === 'string') {
-      return `Server error: ` + error.error;
-    }
+  openDeleteDialog(show: TvShowEntity) {
+    let dialogRef;
+    dialogRef = this.dialog.open(DeleteDialog, {
+      data: { show }
+    });
 
-    if (error.error?.message) {
-      return `Server error: ` + error.error.message;
-    }
-
-    return `Server error ${error.status}: ${error.statusText}`;
+    dialogRef.afterClosed().subscribe((deleted) => {
+      if (deleted) {
+        this.showStateService.refreshShows();
+      }
+    });
   }
 }

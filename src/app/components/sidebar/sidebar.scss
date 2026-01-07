@@ -26,6 +26,11 @@ a:hover {
         transform 0.25s ease-in-out;
 }
 
+.shows a {
+    max-width: 150px;
+    overflow: hidden;
+}
+
 .shows:hover img {
     opacity: 1;
     transform: scale(1);

@@ -3,6 +3,7 @@ import { BackendService } from '../../services/backend.service';
 import { ReactiveFormsModule, Validators, FormBuilder, FormGroup } from '@angular/forms';
 import { AnalysisResult } from '../../models/AnalysisResult';
 import { AnalysisStateService } from '../../services/analysis-state.service';
+import { ShowStateService } from '../../services/show-state.service';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatButtonModule } from '@angular/material/button';
@@ -28,10 +29,13 @@ export class AnalysisFormComponent {
   loading = false;
   result: AnalysisResult | null = null;
 
-  constructor(public analysisService: BackendService,
+  constructor(
+    public backendService: BackendService,
     private fb: FormBuilder,
-    private state: AnalysisStateService) {
-    this.state.showName$.subscribe(value => {
+    private analysisState: AnalysisStateService,
+    private showState: ShowStateService
+  ) {
+    this.analysisState.showName$.subscribe(value => {
       this.form = this.fb.group({
         showName: [value, Validators.required],
         episode: [''],
@@ -44,12 +48,13 @@ export class AnalysisFormComponent {
     if (this.form.invalid) return;
 
     this.loading = true;
-    this.state.clear();
+    this.analysisState.clear();
 
-    this.analysisService.analyze(this.form.value)
+    this.backendService.analyze(this.form.value)
       .subscribe({
         next: (result: AnalysisResult) => {
-          this.state.setResult(result);
+          this.analysisState.setResult(result);
+          this.showState.refreshShows();
           this.loading = false;
         },
         error: () => this.loading = false

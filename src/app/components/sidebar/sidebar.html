@@ -5,14 +5,14 @@
 <div *ngIf="shows$ | async as shows">
   <p *ngFor="let show of shows" class="shows">
     <a (click)="setShowName(show.name)">{{ show.name }}</a>
-    <img src="assets/bin.svg" alt="bin" height="12" width="12" />
+    <img (click)="openDeleteDialog(show)" src="assets/bin.svg" alt="bin" height="12" width="12" />
   </p>
 
   <p *ngIf="shows.length === 0">
     No shows available
   </p>
 
-  <p *ngIf="errorMessage">
-    {{ errorMessage }}
+  <p *ngIf="showStateService.errorMessage">
+    {{ showStateService.errorMessage }}
   </p>
 </div>

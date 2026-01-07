@@ -25,7 +25,7 @@ export class BackendService {
 
   deleteShow(showId: string) {
     return this.http.delete(
-      `${this.backendURL}/show/${showId}`
+      `${this.backendURL}/shows/${showId}`
     );
   }
 }
