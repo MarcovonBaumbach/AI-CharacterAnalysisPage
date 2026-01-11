@@ -4,7 +4,7 @@
 
 <div *ngIf="shows$ | async as shows">
   <p *ngFor="let show of shows" class="shows">
-    <a (click)="setShowName(show.name)">{{ show.name }}</a>
+    <a (click)="setShowData(show)">{{ show.name }}</a>
     <img (click)="openDeleteDialog(show)" src="assets/bin.svg" alt="bin" height="12" width="12" />
   </p>
 

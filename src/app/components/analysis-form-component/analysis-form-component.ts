@@ -9,6 +9,7 @@ import { MatInputModule } from '@angular/material/input';
 import { MatButtonModule } from '@angular/material/button';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { NgIf } from '@angular/common';
+import { EpisodeStateService } from '../../services/episode-state.service';
 
 @Component({
   standalone: true,
@@ -33,7 +34,8 @@ export class AnalysisFormComponent {
     public backendService: BackendService,
     private fb: FormBuilder,
     private analysisState: AnalysisStateService,
-    private showState: ShowStateService
+    private showState: ShowStateService,
+    private episodestate: EpisodeStateService
   ) {
     this.analysisState.showName$.subscribe(value => {
       this.form = this.fb.group({
@@ -54,6 +56,7 @@ export class AnalysisFormComponent {
       .subscribe({
         next: (result: AnalysisResult) => {
           this.analysisState.setResult(result);
+          this.episodestate.setResult(null);
           this.showState.refreshShows();
           this.loading = false;
         },

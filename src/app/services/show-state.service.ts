@@ -1,7 +1,6 @@
 import { Injectable } from '@angular/core';
 import { BehaviorSubject, switchMap } from 'rxjs';
 import { BackendService } from './backend.service';
-import { TvShowEntity } from '../models/TvShowEntity';
 import { catchError, of } from 'rxjs';
 import { HttpErrorResponse } from "@angular/common/http";
 

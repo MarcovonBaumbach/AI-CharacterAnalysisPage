@@ -4,6 +4,8 @@ import { AnalysisStateService } from '../../services/analysis-state.service';
 import { AnalysisResult } from '../../models/AnalysisResult';
 import { Observable } from 'rxjs';
 import { CommonModule } from '@angular/common';
+import { EpisodeStateService } from '../../services/episode-state.service';
+import { EpisodeEntity } from '../../models/EpisodesEntity';
 
 @Component({
   standalone: true,
@@ -13,9 +15,13 @@ import { CommonModule } from '@angular/common';
   styleUrl: './analysis-result-component.scss',
 })
 export class AnalysisResultComponent {
-  result$: Observable<AnalysisResult | null>;
+  analysis$: Observable<AnalysisResult | null>;
+  episodes$: Observable<EpisodeEntity[] | null>;
 
-  constructor(private state: AnalysisStateService) {
-    this.result$ = this.state.result$;
+  constructor(private analysisState: AnalysisStateService,
+    private episodeState: EpisodeStateService
+  ) {
+    this.analysis$ = this.analysisState.result$;
+    this.episodes$ = this.episodeState.result$;
   }
 }

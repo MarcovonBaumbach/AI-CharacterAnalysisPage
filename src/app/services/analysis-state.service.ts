@@ -9,7 +9,7 @@ export class AnalysisStateService {
   showNameSubject = new BehaviorSubject<string>("");
   showName$ = this.showNameSubject.asObservable();
 
-  setResult(result: AnalysisResult) {
+  setResult(result: AnalysisResult | null) {
     this.resultSubject.next(result);
   }
 

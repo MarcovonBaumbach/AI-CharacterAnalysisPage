@@ -1,8 +1,14 @@
-<section *ngIf="result$ | async as result">
-  <mat-card>
+<section>
+  <mat-card *ngIf="analysis$ | async as result">
     <mat-card-title>Reflection</mat-card-title>
     <mat-card-content class="reflection">
       {{ result.reflection.reflection }}
+    </mat-card-content>
+  </mat-card>
+  <mat-card *ngIf="episodes$ | async as result">
+    <mat-card-title>Summary of last episode:</mat-card-title>
+    <mat-card-content class="reflection">
+      {{ result[result.length-1].reflection }}
     </mat-card-content>
   </mat-card>
 </section>

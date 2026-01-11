@@ -1,13 +1,13 @@
 import { Component } from '@angular/core';
-import { Observable } from 'rxjs';
+import { map, Observable, tap } from 'rxjs';
 import { TvShowEntity } from '../../models/TvShowEntity';
-import { BackendService } from '../../services/backend.service';
 import { CommonModule } from '@angular/common';
 import { AnalysisStateService } from '../../services/analysis-state.service';
-import { HttpErrorResponse } from "@angular/common/http";
 import { MatDialog } from '@angular/material/dialog';
 import { DeleteDialog } from './delete-dialog/delete-dialog';
 import { ShowStateService } from '../../services/show-state.service';
+import { BackendService } from '../../services/backend.service';
+import { EpisodeStateService } from '../../services/episode-state.service';
 
 @Component({
   selector: 'app-sidebar',
@@ -20,6 +20,7 @@ export class Sidebar {
 
   constructor(
     private backendService: BackendService,
+    private episodeStateService: EpisodeStateService,
     private analysisStateService: AnalysisStateService,
     public showStateService: ShowStateService,
     private dialog: MatDialog
@@ -27,8 +28,12 @@ export class Sidebar {
     this.shows$ = this.showStateService.shows$;
   }
 
-  setShowName(showName: string) {
-    this.analysisStateService.showNameSubject.next(showName);
+  setShowData(show: TvShowEntity) {
+    this.analysisStateService.setResult(null);
+    this.analysisStateService.showNameSubject.next(show.name);
+    this.backendService.getEpisodes(show.id).subscribe(data => {
+      this.episodeStateService.setResult(data);
+    });
   }
 
   openDeleteDialog(show: TvShowEntity) {

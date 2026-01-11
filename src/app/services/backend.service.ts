@@ -3,6 +3,7 @@ import { HttpClient } from "@angular/common/http";
 import { CharacterAnalysisInput } from "../models/CharacterAnalysisInput";
 import { AnalysisResult } from "../models/AnalysisResult";
 import { TvShowEntity } from "../models/TvShowEntity";
+import { EpisodeEntity } from "../models/EpisodesEntity";
 
 @Injectable({ providedIn: 'root' })
 export class BackendService {
@@ -20,6 +21,12 @@ export class BackendService {
   getShows(){
     return this.http.get<TvShowEntity[]>(
       `${this.backendURL}/shows`
+    );
+  }
+
+  getEpisodes(showId: string){
+    return this.http.get<EpisodeEntity[]>(
+      `${this.backendURL}/shows/${showId}/episodes`
     );
   }
 
