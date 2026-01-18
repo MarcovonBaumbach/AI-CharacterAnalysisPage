@@ -1,5 +1,4 @@
 import { Component, signal } from '@angular/core';
-import { RouterOutlet } from '@angular/router';
 import { AnalysisFormComponent } from "./components/analysis-form-component/analysis-form-component";
 import { AnalysisResultComponent } from './components/analysis-result-component/analysis-result-component';
 import { Sidebar } from "./components/sidebar/sidebar";
@@ -7,7 +6,6 @@ import { Sidebar } from "./components/sidebar/sidebar";
 @Component({
   selector: 'app-root',
   imports: [
-    RouterOutlet,
     AnalysisFormComponent,
     AnalysisResultComponent,
     Sidebar

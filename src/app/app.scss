@@ -20,7 +20,11 @@
 .sidebar {
   width: fit-content;
   min-width: 150px;
-  background-color: #cfd3d8;
+  background-color: light-dark(#fbf1f5, #1e1a1d);
+  border-color: light-dark(#fbf1f5, #1e1a1d);
+  border-style: solid;
+  border-width: 0;
+  box-shadow: 0px 2px 1px -1px rgba(0, 0, 0, 0.2), 0px 1px 1px 0px rgba(0, 0, 0, 0.14), 0px 1px 3px 0px rgba(0, 0, 0, 0.12);
   color: rgb(80, 77, 77);
   padding: 24px;
 }
